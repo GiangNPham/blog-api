@@ -1,9 +1,14 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+const Post = require("../models/postModel");
+
+router.get("/", function (req, res, next) {
+  Post.find()
+    .then((allPosts) => {
+      res.render("index", { title: "BlogAPI", allPosts });
+    })
+    .catch((err) => console.err("Cannot get posts"));
 });
 
 module.exports = router;

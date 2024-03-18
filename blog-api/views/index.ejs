@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title><%= title %></title>
+</head>
+
+<body>
+
+
+  <h1>Welcome to my posts</h1>
+
+  <!-- display all posts with variable allPosts -->
+  <% allPosts.forEach((post) => { %>
+  <div style="border-style: solid; margin-bottom: 1rem;">
+    <h1><%= post.title %></h1>
+    <p><%=post.author %> - <%=post.timeStamp %></p>
+    <p><%=post.content %></p>
+    <button><a href=<%="/posts/" + post._id %>>See post</a></button>
+  </div>
+  <% }) %>
+</body>
+
 </html>
