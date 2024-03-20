@@ -8,6 +8,8 @@
 </head>
 
 <body>
+  <%- include("./partials/nav.ejs", {isAuth}) %>
+
   <h1><%= post.title %></h1>
   <p><%=post.author %> - <%=post.timeStamp %></p>
   <p><%=post.content %></p>

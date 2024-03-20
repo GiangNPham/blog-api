@@ -8,7 +8,12 @@ router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
     .then((post) => {
       Comment.find({ post: req.params.id }).then((comments) =>
-        res.render("viewPost", { post, comments, id: req.params.id })
+        res.render("viewPost", {
+          post,
+          comments,
+          id: req.params.id,
+          isAuth: req.session.isAuth,
+        })
       );
     })
     .catch((err) => console.error("Cannot find post"));
@@ -26,5 +31,7 @@ router.post("/:id", (req, res) => {
     .then(() => res.redirect("/posts/" + req.params.id))
     .catch((err) => console.error(err));
 });
+
+router.get("/manage/:id", (req, res) => {});
 
 module.exports = router;

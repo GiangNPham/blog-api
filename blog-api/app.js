@@ -3,12 +3,15 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require("express-session");
+
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const postRouter = require("./routes/post");
 // const createRouter = require("./routes/create")
-// const loginRouter = require("./routes/login")
+const loginRouter = require("./routes/login");
+const logoutRouter = require("./routes/logout");
 // const manageRouter = require("./routes/mangage")
 
 var app = express();
@@ -30,9 +33,19 @@ mongoose
   .then(() => app.listen(3000))
   .catch((err) => console.err("database connection error"));
 
+// setting up session
+app.use(
+  session({
+    secret: "key that will sign the cookie",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 app.use("/", indexRouter);
 app.use("/posts", postRouter);
-// app.use("/login", loginRouter)
+app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 // app.use("/create", createRouter) : // only authorized user can access and create posts
 // app.use("/manage", manageRouter) // for authorized user to view all posts
 

@@ -6,7 +6,11 @@ const Post = require("../models/postModel");
 router.get("/", function (req, res, next) {
   Post.find()
     .then((allPosts) => {
-      res.render("index", { title: "BlogAPI", allPosts });
+      res.render("index", {
+        title: "BlogAPI",
+        allPosts,
+        isAuth: req.session.isAuth,
+      });
     })
     .catch((err) => console.err("Cannot get posts"));
 });

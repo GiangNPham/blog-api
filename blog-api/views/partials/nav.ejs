@@ -1,5 +1,19 @@
 <nav>
+  <% if (isAuth) { %>
   <ul>
-    <li></li>
+    <li>
+      <a href="/logout">Logout</a>
+    </li>
+    <li> <a href="/manage">Manage</a></li>
   </ul>
+  <% } else { %>
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/login">Log in</a>
+    </li>
+  </ul>
+  <% } %>
 </nav>

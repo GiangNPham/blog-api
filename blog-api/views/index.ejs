@@ -7,8 +7,9 @@
 
 <body>
 
-
+  <%- include("./partials/nav.ejs", {isAuth}) %>
   <h1>Welcome to my posts</h1>
+
 
   <!-- display all posts with variable allPosts -->
   <% allPosts.forEach((post) => { %>
