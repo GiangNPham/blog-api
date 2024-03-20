@@ -18,6 +18,14 @@
     <p>Writer: <%= com.author%></p>
   </div>
   <% }) %>
+  <form method="POST" action=<%="/posts/" + id %>>
+    <label for="author">Author:</label>
+    <input name="author">
+
+    <label for="content">Content:</label>
+    <input name="content">
+    <button>Submit</button>
+  </form>
 </body>
 
 </html>
