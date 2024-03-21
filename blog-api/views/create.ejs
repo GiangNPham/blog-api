@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create post</title>
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs", {isAuth}) %>
+  <form method="POST" action="/create">
+    <label for="title">Title:</label>
+    <input name="title">
+
+    <label for="content">Content:</label>
+    <input name="content" style="width: 20rem; height: 5rem;">
+    <button>Submit</button>
+  </form>
+
+</body>
+
+</html>

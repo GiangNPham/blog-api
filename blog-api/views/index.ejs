@@ -15,11 +15,22 @@
   <% allPosts.forEach((post) => { %>
   <div style="border-style: solid; margin-bottom: 1rem;">
     <h1><%= post.title %></h1>
-    <p><%=post.author %> - <%=post.timeStamp %></p>
+    <p><%=post.author %> - <%=post.timeStamp.getMonth()+1 %>/<%=post.timeStamp.getDate() %>/<%=post.timeStamp.getFullYear() %></p>
     <p><%=post.content %></p>
     <button><a href=<%="/posts/" + post._id %>>See post</a></button>
+    <% if (isAuth) { %>
+
+    <form style="margin-top: 1rem;" method="POST" action=<%="/delete/post/" + post._id %>>
+      <button>Delete post</button>
+    </form>
+    <% } %>
+
+
   </div>
   <% }) %>
+  <% if (isAuth) { %>
+  <button><a href="/create">Create post</a></button>
+  <% } %>
 </body>
 
 </html>

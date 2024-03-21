@@ -11,13 +11,20 @@
   <%- include("./partials/nav.ejs", {isAuth}) %>
 
   <h1><%= post.title %></h1>
-  <p><%=post.author %> - <%=post.timeStamp %></p>
+  <p><%=post.author %> - <%=post.timeStamp.getMonth()+1 %>/<%=post.timeStamp.getDate() %>/<%=post.timeStamp.getFullYear() %></p>
   <p><%=post.content %></p>
 
   <% comments.forEach((com) => { %>
   <div style="border: solid; margin-bottom: 1rem;">
     <p><%= com.content%></p>
     <p>Writer: <%= com.author%></p>
+
+    <% if (isAuth) { %>
+
+    <form method="POST" action=<%="/delete/comment/" + com._id %>>
+      <button>Delete comment</button>
+    </form>
+    <% } %>
   </div>
   <% }) %>
   <form method="POST" action=<%="/posts/" + id %>>
@@ -28,6 +35,13 @@
     <input name="content">
     <button>Submit</button>
   </form>
+  <% if (isAuth) { %>
+
+  <form style="margin-top: 1rem;" method="POST" action=<%="/delete/post/" + post._id %>>
+    <button>Delete post</button>
+  </form>
+  <% } %>
+
 </body>
 
 </html>

@@ -9,11 +9,10 @@ require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const postRouter = require("./routes/post");
-// const createRouter = require("./routes/create")
+const createRouter = require("./routes/create");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
-// const manageRouter = require("./routes/mangage")
-
+const deleteRouter = require("./routes/delete");
 var app = express();
 
 // view engine setup
@@ -39,6 +38,7 @@ app.use(
     secret: "key that will sign the cookie",
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 600000 },
   })
 );
 
@@ -46,8 +46,8 @@ app.use("/", indexRouter);
 app.use("/posts", postRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
-// app.use("/create", createRouter) : // only authorized user can access and create posts
-// app.use("/manage", manageRouter) // for authorized user to view all posts
+app.use("/create", createRouter); // only authorized user can access and create posts
+app.use("/delete", deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
